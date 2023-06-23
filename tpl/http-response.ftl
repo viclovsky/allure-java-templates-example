@@ -12,7 +12,14 @@
     <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/bash.min.js"></script>
     <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/json.min.js"></script>
     <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/xml.min.js"></script>
-    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            const json = $('#json');
+            const formattedJson = JSON.stringify(JSON.parse(json.text()), null, 2);
+            json.text(formattedJson);
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
 
     <style>
         pre {
@@ -44,7 +51,7 @@
 <#if data.body??>
 <h4>Body</h4>
 <div>
-    <pre><code>${data.body}</code></pre>
+    <pre><code id="json">${data.body}</code></pre>
 </div>
 </#if>
 
